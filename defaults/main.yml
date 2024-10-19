@@ -1,4 +1,6 @@
 ---
+ansible_become: true
+
 certificate_common_name: "{{ inventory_hostname }}"
 certificate_remaining_days: 10
 certificate_sans: []
