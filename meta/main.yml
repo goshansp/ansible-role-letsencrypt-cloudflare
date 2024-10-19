@@ -6,6 +6,8 @@ galaxy_info:
   description: LetsEncrypt renewal using Cloudflare DNS
   license: MIT
   min_ansible_version: 2.2
+  role_name: letsencrypt_cloudflare
+  namespace: goshansp
 
   platforms:
     - name: EL
