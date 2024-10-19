@@ -3,9 +3,8 @@
   ansible.builtin.setup:
 
 - name: Install OpenSSL
-  package:
+  ansible.builtin.package:
     name: openssl
-    state: latest
   when: ansible_facts.pkg_mgr != "atomic_container"
 
 - name: Check if the certificate directory exists
@@ -162,8 +161,8 @@
   with_dict: "{{ letsencrypt_challenge['challenge_data'] | default({}) }}"
   when: letsencrypt_challenge['challenge_data'] is defined
 
-- name: download the Let's Encrypt intermediate CA
-  get_url:
+- name: Download the Let's Encrypt intermediate CA
+  ansible.builtin.get_url:
     url: https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem
     dest: "{{ certificate_directory + '/' + intermediate_filename }}"
     owner: "{{ certificate_files_owner }}"
@@ -171,20 +170,20 @@
     mode: "600"
   when: include_intermediate
 
-- name: get content of the certificate
-  command: "cat {{ certificate_directory }}/{{ crt_filename }}"
+- name: Get content of the certificate
+  ansible.builtin.command: "cat {{ certificate_directory }}/{{ crt_filename }}"
   register: certificate_content
   changed_when: false
   when: include_intermediate
 
-- name: get content of the intermediate CA
-  command: "cat {{ certificate_directory }}/{{ intermediate_filename }}"
+- name: Get content of the intermediate CA
+  ansible.builtin.command: "cat {{ certificate_directory }}/{{ intermediate_filename }}"
   register: intermediate_content
   changed_when: false
   when: include_intermediate
 
-- name: create a file with the certificate and intermediate CA concatenated
-  copy:
+- name: Create a file with the certificate and intermediate CA concatenated
+  ansible.builtin.copy:
     content: "{{ certificate_content['stdout'] + '\n' + intermediate_content['stdout'] + '\n' }}"
     dest: "{{ certificate_directory + '/' + fullchain_filename }}"
     owner: "{{ certificate_files_owner }}"
@@ -234,4 +233,3 @@
     path: "{{ certificate_directory }}"
     state: absent
   when: (cleanup_all) and (not certificate_directory_stat.stat.exists)
-
