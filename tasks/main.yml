@@ -3,6 +3,7 @@
   package:
     name: openssl
     state: latest
+  # when: TODO: not for CoreOS
 
 - name: check if the certificate directory exists
   stat:
