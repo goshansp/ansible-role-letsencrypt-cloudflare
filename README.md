@@ -1,4 +1,14 @@
+This is experimental, use with caution ...
+
+# Goshansp WIP / TODO
+- How to version? (git tag v0.1.0 ?)
+- Idempotence
+- Only deploy required files (crt, ...?)
+- Integrate Travis, notify Galaxy
+...
+
 [![Build Status](https://travis-ci.org/bendews/ansible-letsencrypt-cloudflare.svg?branch=master)](https://travis-ci.org/bendews/ansible-letsencrypt-cloudflare)
+
 
 # LetsEncrypt-Cloudflare 
 
