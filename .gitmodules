@@ -1,0 +1,3 @@
+[submodule "molecule"]
+	path = molecule
+	url = git@gitlab.com:goshansp/molecule.git
