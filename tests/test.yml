@@ -14,4 +14,4 @@
         cloudflare_api_key: "AAABBBCCCDDDEEE111222333"
         certificate_directory: "/tmp/cert_test"
         letsencrypt_key_directory: "/tmp/cert_test/letsencrypt"
-        include_intermediate: yes
+        include_intermediate: true
