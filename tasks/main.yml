@@ -1,9 +1,12 @@
 ---
+- name: Filter and return only selected facts
+  ansible.builtin.setup:
+
 - name: Install OpenSSL
   package:
     name: openssl
     state: latest
-  # when: TODO: not for CoreOS
+  when: ansible_facts.pkg_mgr != "atomic_container"
 
 - name: check if the certificate directory exists
   stat:
